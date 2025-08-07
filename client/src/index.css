@@ -1,0 +1,712 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* === ADAPTIVE RESPONSIVE BUTTON SIZING === */
+  .action-button {
+    @apply transition-all duration-200 ease-in-out transform-gpu;
+    min-width: 32px;
+    min-height: 32px;
+  }
+  
+  /* Mobile-first approach - larger buttons on small screens */
+  @media (max-width: 768px) {
+    .action-button {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 8px;
+    }
+  }
+  
+  /* Stop type buttons auto-resize */
+  .stop-type-button {
+    @apply transition-all duration-200 ease-in-out transform-gpu;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    min-width: fit-content;
+  }
+  
+  /* === CONTEXTUAL MICRO-INTERACTIONS === */
+  .action-button:hover {
+    @apply scale-110 shadow-lg;
+    z-index: 10;
+  }
+  
+  .action-button:active {
+    @apply scale-105;
+    transition-duration: 100ms;
+  }
+  
+  .action-button-calendar:hover {
+    @apply bg-blue-100 text-blue-700 border-blue-200;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+  
+  .action-button-departure:hover {
+    @apply bg-green-100 text-green-700 border-green-200;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
+  }
+  
+  .action-button-edit:hover {
+    @apply bg-gray-100 text-gray-700 border-gray-200;
+    box-shadow: 0 4px 12px rgba(107, 114, 128, 0.15);
+  }
+  
+  /* Stop type button states */
+  .stop-type-button:hover {
+    @apply scale-105 shadow-md;
+    transform-origin: center;
+  }
+  
+  .stop-type-button.selected {
+    @apply shadow-md ring-2 ring-opacity-50;
+  }
+  
+  .stop-type-button.selected.regular {
+    @apply ring-gray-400;
+  }
+  
+  .stop-type-button.selected.multi-stop {
+    @apply ring-blue-400;
+  }
+  
+  .stop-type-button.selected.rail {
+    @apply ring-green-400;
+  }
+  
+  .stop-type-button.selected.no-billing {
+    @apply ring-purple-400;
+  }
+  
+  .stop-type-button.selected.drop-hook {
+    @apply ring-orange-400;
+  }
+  
+  /* === ELEGANT PROGRESS INDICATORS === */
+  .detention-progress-container {
+    @apply transition-all duration-500 ease-in-out;
+  }
+  
+  .detention-progress-bar {
+    @apply transition-all duration-700 ease-out;
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  }
+  
+  .detention-progress-bar.animated {
+    animation: progress-fill 1s ease-out;
+  }
+  
+  .detention-progress-bar.pulsing {
+    animation: detention-pulse 1.5s infinite !important;
+    transition: none !important;
+  }
+  
+  .warning-progress-bar {
+    @apply transition-all duration-500 ease-out;
+    background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+  }
+  
+  .warning-progress-bar.pulsing {
+    animation: warning-pulse 4.5s infinite;
+  }
+  
+  /* Progress number animations */
+  .progress-number {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .progress-number.updating {
+    animation: number-update 0.3s ease-out;
+  }
+  
+  /* === STATUS BADGE ANIMATIONS === */
+  .status-badge {
+    @apply transition-all duration-300 ease-in-out transform-gpu;
+  }
+  
+  .status-badge:hover {
+    @apply scale-105;
+  }
+  
+  .status-badge.animate-pulse-subtle {
+    animation: pulse-subtle 3s infinite;
+  }
+  
+  .status-badge.animate-pulse-gentle {
+    animation: pulse-gentle 2.5s infinite;
+  }
+  
+  .status-badge.animate-pulse-urgent {
+    animation: pulse-urgent 1.5s infinite;
+  }
+  
+  .status-badge.animate-glow {
+    animation: glow-pulse 3s infinite;
+  }
+  
+  /* === INTELLIGENT TOOLTIP SYSTEM === */
+  .instant-tooltip {
+    @apply absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none opacity-0 transition-all duration-200 z-50;
+    transform: translateX(-50%) translateY(4px) scale(0.9);
+  }
+  
+  .action-button:hover .instant-tooltip {
+    @apply opacity-100;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  
+  /* Smart positioning for tooltips near viewport edges */
+  .tooltip-left .instant-tooltip {
+    left: 0;
+    transform: translateX(0) translateY(4px) scale(0.9);
+  }
+  
+  .tooltip-left .action-button:hover .instant-tooltip {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  
+  .tooltip-right .instant-tooltip {
+    right: 0;
+    left: auto;
+    transform: translateX(0) translateY(4px) scale(0.9);
+  }
+  
+  .tooltip-right .action-button:hover .instant-tooltip {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  
+  /* === DRIVER ROW MICRO-INTERACTIONS === */
+  .driver-row {
+    @apply transition-all duration-200 ease-in-out transform-gpu;
+  }
+  
+  .driver-row:hover {
+    @apply shadow-lg bg-gray-50;
+    transform: translateY(-1px);
+  }
+  
+  /* === ICON ANIMATIONS === */
+  .animate-icon {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .animate-icon:hover {
+    @apply scale-110;
+  }
+  
+  .pulse-icon {
+    animation: icon-pulse 2s infinite;
+  }
+  
+  .rotate-icon {
+    @apply transition-transform duration-200 ease-in-out;
+  }
+  
+  .rotate-icon:hover {
+    transform: rotate(10deg);
+  }
+  
+  /* === COMPACT UI DESIGN === */
+  .compact-table {
+    @apply text-sm;
+  }
+  
+  .compact-table th {
+    @apply py-2 px-2;
+  }
+  
+  .compact-table td {
+    @apply py-3 px-2;
+  }
+  
+  /* Smart spacing for mobile */
+  @media (max-width: 768px) {
+    .compact-spacing {
+      padding: 0.25rem;
+    }
+    
+    .mobile-stack {
+      @apply flex-col space-y-2;
+    }
+  }
+  
+  /* === DASHBOARD METRIC ANIMATIONS === */
+  .metric-card {
+    @apply transition-all duration-300 ease-in-out transform-gpu;
+  }
+  
+  .metric-card:hover {
+    @apply scale-105 shadow-lg;
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  .metric-value {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .metric-value.updating {
+    animation: metric-update 0.5s ease-out;
+  }
+  
+  /* Detention progress animations */
+  .detention-pulse {
+    animation: detention-pulse 1.5s infinite !important;
+    transition: none !important;
+  }
+  
+  .warning-pulse {
+    animation: warning-pulse 2.5s infinite !important;
+    transition: none !important;
+  }
+  
+  .progress-glow {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+  
+  .progress-warning-glow {
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+  }
+  
+  /* Force 24-hour format for datetime-local inputs */
+  input[type="datetime-local"]::-webkit-datetime-edit-hour-field,
+  input[type="datetime-local"]::-webkit-datetime-edit-minute-field {
+    -webkit-appearance: none;
+  }
+  
+  input[type="datetime-local"]::-webkit-datetime-edit-ampm-field {
+    display: none;
+  }
+}
+
+@keyframes detention-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes warning-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* === ENHANCED ANIMATION KEYFRAMES === */
+@keyframes progress-fill {
+  from {
+    width: 0;
+    opacity: 0.7;
+  }
+  to {
+    width: var(--progress-width);
+    opacity: 1;
+  }
+}
+
+@keyframes number-update {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    color: rgb(239, 68, 68);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pulse-urgent {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+  }
+  50% {
+    opacity: 0.9;
+    box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.1);
+  }
+}
+
+@keyframes icon-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes metric-update {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    color: rgb(59, 130, 246);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Global 24-hour format for datetime inputs */
+html {
+  --webkit-datetime-edit-hour-format: 24;
+}
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(240, 10%, 3.9%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(240, 10%, 3.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(240, 10%, 3.9%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(210, 40%, 98%);
+  --secondary-foreground: hsl(222, 84%, 4.9%);
+  --accent: hsl(210, 40%, 98%);
+  --accent-foreground: hsl(222, 84%, 4.9%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(215, 20%, 65%);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom styles for Dispatcher Helper */
+.surface {
+  background-color: hsl(210, 20%, 98%);
+}
+
+/* Status badge colors matching design */
+.status-active {
+  background-color: hsl(142, 76%, 36%);
+  color: white;
+}
+
+.status-warning {
+  background-color: hsl(38, 92%, 50%);
+  color: white;
+}
+
+.status-critical {
+  background-color: hsl(0, 84%, 60%);
+  color: white;
+}
+
+/* Primary colors matching design reference */
+.primary-blue {
+  background-color: hsl(207, 90%, 54%);
+}
+
+.secondary-gray {
+  color: hsl(220, 13%, 26%);
+}
+
+/* Table hover effects */
+.driver-table-row:hover {
+  background-color: hsl(210, 40%, 98%);
+}
+
+/* Alert animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.alert-toast {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Force 24-hour time format for datetime inputs */
+input[type="datetime-local"]::-webkit-datetime-edit-hour-field {
+  color: inherit;
+}
+
+input[type="datetime-local"] {
+  -webkit-locale: "en-GB";
+}
+
+/* Status Badge Animations */
+@keyframes pulse-subtle {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.9; 
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.4);
+  }
+  50% { 
+    opacity: 0.95; 
+    box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.1);
+  }
+}
+
+@keyframes pulse-urgent {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% { 
+    opacity: 0.95; 
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 5px rgba(147, 51, 234, 0.3);
+  }
+  50% { 
+    opacity: 0.95; 
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+.animate-pulse-urgent {
+  animation: pulse-urgent 1.5s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Removed tooltip styles */
+
+/* Driver Row Hover Effects */
+.driver-row {
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.driver-row:hover {
+  background-color: hsl(210, 40%, 98%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Enhanced Action Button Hover Effects */
+.action-button {
+  transition: all 0.15s ease-in-out;
+  position: relative;
+}
+
+.action-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.action-button:active {
+  transform: scale(1.05);
+}
+
+/* Action Button Specific Colors */
+.action-button-calendar:hover {
+  background-color: rgb(219 234 254) !important;
+  color: rgb(30 64 175) !important;
+}
+
+.action-button-departure:hover {
+  background-color: rgb(220 252 231) !important;
+  color: rgb(21 128 61) !important;
+}
+
+.action-button-edit:hover {
+  background-color: rgb(243 244 246) !important;
+  color: rgb(55 65 81) !important;
+}
+
+/* Instant Tooltip Styles */
+.instant-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s ease-in-out;
+  z-index: 1000;
+  margin-bottom: 4px;
+}
+
+.instant-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.action-button:hover .instant-tooltip {
+  opacity: 1;
+}
+
+/* Status Change Micro-Interactions */
+.status-change {
+  animation: statusChange 0.6s ease-in-out;
+}
+
+@keyframes statusChange {
+  0% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+  25% { 
+    transform: scale(1.1); 
+    opacity: 0.8; 
+  }
+  50% { 
+    transform: scale(0.95); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
