@@ -1,0 +1,15 @@
+<!-- SVG to ICO placeholder - we'll create a proper truck icon -->
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Truck body -->
+  <rect x="2" y="12" width="16" height="8" fill="#2563eb" rx="2"/>
+  <!-- Truck cabin -->
+  <rect x="18" y="8" width="8" fill="#1d4ed8" rx="2"/>
+  <!-- Wheels -->
+  <circle cx="6" cy="24" r="3" fill="#374151"/>
+  <circle cx="22" cy="24" r="3" fill="#374151"/>
+  <!-- Wheel centers -->
+  <circle cx="6" cy="24" r="1" fill="#9ca3af"/>
+  <circle cx="22" cy="24" r="1" fill="#9ca3af"/>
+  <!-- Window -->
+  <rect x="19" y="10" width="6" height="4" fill="#bfdbfe" rx="1"/>
+</svg>
